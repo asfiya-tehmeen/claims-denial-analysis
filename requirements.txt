@@ -1,0 +1,11 @@
+pandas
+numpy
+scipy
+scikit-learn
+lightgbm
+shap
+duckdb
+pyyaml
+matplotlib
+pyarrow
+pytest
