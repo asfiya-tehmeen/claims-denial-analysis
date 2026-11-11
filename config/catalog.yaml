@@ -1,0 +1,145 @@
+# Code catalogue for the simulator.
+# - CPT/HCPCS codes: codes only (no AMA descriptors). Every CPT code below is checked
+#   against the CMS NCCI MUE table by tests/test_reference.py.
+# - ICD-10-CM codes: written without the dot, checked against the CMS FY2027 order file
+#   (must exist and be billable, except `invalid_dx_headers`, which must be non-billable).
+# - Prices (AED) are SIMULATED round numbers. They are not the DHA mandatory tariff.
+# - Drug codes are SIMULATED (prefix SIM-). They are not real DHA drug codes.
+
+service_lines:
+  outpatient:
+    label: Outpatient consultation
+    weight: 0.36
+    specialty: [family_medicine, internal_medicine]
+  emergency:
+    label: Emergency
+    weight: 0.10
+    specialty: [emergency_medicine]
+  laboratory:
+    label: Laboratory
+    weight: 0.18
+    specialty: [pathology]
+  radiology:
+    label: Radiology
+    weight: 0.10
+    specialty: [radiology]
+  physiotherapy:
+    label: Physiotherapy
+    weight: 0.10          # share of claims; generated as multi-session episodes
+    specialty: [physiotherapy]
+  pharmacy:
+    label: Pharmacy
+    weight: 0.12
+    specialty: [family_medicine, internal_medicine]
+  day_surgery:
+    label: Day surgery
+    weight: 0.05
+    specialty: [general_surgery, gastroenterology, orthopaedics, ophthalmology]
+
+# code -> service line, simulated base price (AED), high_cost flag
+codes:
+  "99202": {line: outpatient, price: 250}
+  "99203": {line: outpatient, price: 300}
+  "99204": {line: outpatient, price: 400}
+  "99212": {line: outpatient, price: 200}
+  "99213": {line: outpatient, price: 250}
+  "99214": {line: outpatient, price: 320}
+  "99215": {line: outpatient, price: 400}
+  "96372": {line: outpatient, price: 60}
+  "99283": {line: emergency, price: 450}
+  "99284": {line: emergency, price: 650}
+  "99285": {line: emergency, price: 900}
+  "36415": {line: laboratory, price: 25}
+  "80053": {line: laboratory, price: 150}
+  "80048": {line: laboratory, price: 110}
+  "85025": {line: laboratory, price: 60}
+  "83036": {line: laboratory, price: 110}
+  "80061": {line: laboratory, price: 140}
+  "84443": {line: laboratory, price: 120}
+  "81001": {line: laboratory, price: 40}
+  "71046": {line: radiology, price: 180}
+  "76700": {line: radiology, price: 450}
+  "72148": {line: radiology, price: 1800, high_cost: true}
+  "70551": {line: radiology, price: 1900, high_cost: true}
+  "73721": {line: radiology, price: 1700, high_cost: true}
+  "74177": {line: radiology, price: 2000, high_cost: true}
+  "97161": {line: physiotherapy, price: 300}
+  "97162": {line: physiotherapy, price: 350}
+  "97110": {line: physiotherapy, price: 120}
+  "97140": {line: physiotherapy, price: 120}
+  "97112": {line: physiotherapy, price: 120}
+  "97530": {line: physiotherapy, price: 130}
+  "97035": {line: physiotherapy, price: 80}
+  "43239": {line: day_surgery, price: 3800, high_cost: true}
+  "43235": {line: day_surgery, price: 3000, high_cost: true}
+  "45380": {line: day_surgery, price: 4200, high_cost: true}
+  "45378": {line: day_surgery, price: 3500, high_cost: true}
+  "29881": {line: day_surgery, price: 9000, high_cost: true}
+  "66984": {line: day_surgery, price: 7500, high_cost: true}
+  "47562": {line: day_surgery, price: 12000, high_cost: true}
+  "49505": {line: day_surgery, price: 8500, high_cost: true}
+
+drugs:   # simulated codes; class drives medical-necessity support
+  SIM-0101-00001-01: {cls: antibiotic, price: 45}
+  SIM-0101-00002-01: {cls: antibiotic, price: 85}
+  SIM-0101-00003-01: {cls: antibiotic, price: 140}
+  SIM-0202-00001-01: {cls: antihypertensive, price: 60}
+  SIM-0202-00002-01: {cls: antihypertensive, price: 110}
+  SIM-0303-00001-01: {cls: antidiabetic, price: 75}
+  SIM-0303-00002-01: {cls: antidiabetic, price: 520}
+  SIM-0404-00001-01: {cls: statin, price: 90}
+  SIM-0505-00001-01: {cls: ppi, price: 55}
+  SIM-0606-00001-01: {cls: analgesic, price: 20}
+  SIM-0606-00002-01: {cls: analgesic, price: 35}
+  SIM-0707-00001-01: {cls: antihistamine, price: 30}
+  SIM-0808-00001-01: {cls: thyroid, price: 40}
+  SIM-0909-00001-01: {cls: vitamin, price: 65}
+  SIM-0909-00002-01: {cls: vitamin, price: 120}
+
+# Principal-diagnosis pools per service line (ICD-10-CM, no dot) with sampling weights
+dx_pools:
+  outpatient: {J069: 14, I10: 12, E119: 12, M5450: 8, R519: 6, K219: 7, J029: 8, N390: 6, R109: 5, Z0000: 3, E785: 8, J301: 4, L309: 4}
+  emergency: {R079: 14, S93401A: 12, R109: 12, J189: 8, R509: 10, N23: 8, S0181XA: 10, R112: 10, R519: 8, R0789: 8}
+  laboratory: {E119: 16, E785: 14, I10: 10, R7303: 10, E039: 8, D649: 8, Z0000: 5, N390: 8, R5383: 10}
+  radiology: {M5450: 14, M5416: 12, G43909: 8, R519: 8, M23205: 8, S83241A: 6, M25561: 8, R109: 8, K8020: 6, N23: 6, J189: 6, R059: 6, R079: 4}
+  physiotherapy: {M5450: 18, M5416: 14, M25561: 14, M75101: 12, S93401A: 10, M6281: 10, M542: 12, Z4789: 10}
+  pharmacy: {J069: 14, J029: 10, J189: 6, N390: 8, I10: 14, E119: 12, R7303: 4, E785: 10, K219: 8, J301: 6, E039: 4, M5450: 4}
+  day_surgery: {K219: 10, K2970: 10, Z1211: 18, K635: 14, S83241A: 8, M23205: 8, H259: 14, K8020: 10, K4090: 8}
+
+# Header (non-billable) ICD-10-CM codes used to simulate invalid principal diagnoses
+invalid_dx_headers: [M545, E11, M2320]
+
+# Medical-necessity support: code group -> strong / weak diagnoses.
+# A diagnosis not listed for a code group is "none" (unsupported) unless the group is `any`.
+support:
+  em_low:   {codes: ["99202", "99203", "99212", "99213", "96372", "99283", "99284"], any: true}
+  em_high:  {codes: ["99204", "99214", "99215", "99285"], weak: [J069, J029, J301, L309, S93401A, R519], any: true}
+  lab_general: {codes: ["36415", "80053", "80048", "85025"], any: true}
+  hba1c:    {codes: ["83036"], strong: [E119, R7303], weak: [E785, I10, R5383, Z0000]}
+  lipids:   {codes: ["80061"], strong: [E785, I10, E119], weak: [R5383, Z0000, R7303]}
+  tsh:      {codes: ["84443"], strong: [E039], weak: [R5383, Z0000, D649]}
+  urinalysis: {codes: ["81001"], strong: [N390, N23, E119], weak: [R109, R5383, Z0000]}
+  mri_lumbar: {codes: ["72148"], strong: [M5416], weak: [M5450]}
+  mri_brain:  {codes: ["70551"], strong: [G43909], weak: [R519]}
+  mri_knee:   {codes: ["73721"], strong: [S83241A, M23205], weak: [M25561]}
+  ct_abdomen: {codes: ["74177"], strong: [N23, K8020], weak: [R109]}
+  chest_xray: {codes: ["71046"], strong: [J189, R059, R079, R0789], weak: [R509]}
+  us_abdomen: {codes: ["76700"], strong: [K8020, R109], weak: [N23]}
+  physio:   {codes: ["97161", "97162", "97110", "97140", "97112", "97530", "97035"], strong: [M5416, M75101, S93401A, S83241A, Z4789, M6281], weak: [M5450, M25561, M542]}
+  egd:      {codes: ["43239", "43235"], strong: [K219, K2970], weak: [R109]}
+  colonoscopy: {codes: ["45378", "45380"], strong: [Z1211, K635]}
+  arthroscopy: {codes: ["29881"], strong: [S83241A, M23205], weak: [M25561]}
+  cataract: {codes: ["66984"], strong: [H259]}
+  cholecystectomy: {codes: ["47562"], strong: [K8020], weak: [R109]}
+  hernia:   {codes: ["49505"], strong: [K4090]}
+
+drug_support:
+  antibiotic: {strong: [J189, N390], weak: [J029]}          # antibiotic for a viral URI -> unsupported
+  antihypertensive: {strong: [I10]}
+  antidiabetic: {strong: [E119], weak: [R7303]}
+  statin: {strong: [E785, E119], weak: [I10]}
+  ppi: {strong: [K219, K2970], weak: [R109]}
+  analgesic: {any: true}
+  antihistamine: {strong: [J301], weak: [J069, L309]}
+  thyroid: {strong: [E039]}
+  vitamin: {weak: [R5383, D649, Z0000], any_weak: true}

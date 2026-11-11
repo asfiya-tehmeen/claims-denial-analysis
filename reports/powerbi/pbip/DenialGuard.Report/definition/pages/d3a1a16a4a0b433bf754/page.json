@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "d3a1a16a4a0b433bf754",
+  "displayName": "Payer Scorecard",
+  "displayOption": "ActualSize",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "d3a1a16a4a0b433b0004",
+      "target": "d3a1a16a4a0b433b0003",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d3a1a16a4a0b433b0005",
+      "target": "d3a1a16a4a0b433b0003",
+      "type": "NoFilter"
+    }
+  ]
+}

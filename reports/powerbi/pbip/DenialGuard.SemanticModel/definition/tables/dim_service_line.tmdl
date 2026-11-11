@@ -1,0 +1,32 @@
+table dim_service_line
+	lineageTag: eae3613b-d259-42ff-97db-1ccf6f0198f5
+
+	column service_line_key
+		dataType: int64
+		isHidden
+		lineageTag: 10540cf4-bdd3-422c-be6e-788877885c0b
+		summarizeBy: none
+		sourceColumn: service_line_key
+
+	column service_line
+		dataType: string
+		lineageTag: c6694ca6-706b-44c9-8b27-5f3d7129d23b
+		summarizeBy: none
+		sourceColumn: service_line
+
+	column service_line_label
+		dataType: string
+		lineageTag: f0df8ed3-d551-47f8-966c-44cf9013969e
+		summarizeBy: none
+		sourceColumn: service_line_label
+
+	partition dim_service_line = m
+		mode: import
+		source =
+				let
+				Source = Csv.Document(File.Contents("C:\Users\exube\OneDrive\Desktop\resume-builder-main\projects\e-claims-denial-analysis\reports\powerbi\dim_service_line.csv"), [Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"service_line_key"}),
+				Typed = Table.TransformColumnTypes(Blanks, {{"service_line_key", Int64.Type}, {"service_line", type text}, {"service_line_label", type text}}, "en-US")
+				in Typed
+

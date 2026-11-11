@@ -1,0 +1,1 @@
+Data honesty: claims are SIMULATED using the published DHA eClaimLink field structure (NPHIES mapping note in docs/data_dictionary.md). Code sets and edit rules come from real public sources listed in data/reference/SOURCES.md. No result describes real UAE or Saudi denial rates.

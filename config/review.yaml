@@ -1,0 +1,23 @@
+# Pre-submission review capacity and fix assumptions. THESE ARE ASSUMPTIONS, stated in the report.
+coders: 1
+review_hours_per_day: 6          # productive hours on pre-submission review per working day
+minutes_per_line: 8              # -> 45 lines reviewed per submission day
+bootstrap_reps: 1000
+
+# Share of a would-be denial a coder prevents once the line is flagged, by root cause.
+# 0 means the money is not recoverable by review (e.g. a bundled code that is never payable,
+# a duplicate that should not be billed, an excess over contract price).
+fix_rate:
+  AUTH: 0.80       # obtain / correct prior approval before submission
+  ELIG: 0.50       # bill the correct payer or collect as self-pay
+  CODE_MOD: 0.70   # append a modifier the documentation supports
+  CODE_DX: 0.90    # replace a header ICD code with a billable one
+  CODE_MUE: 0.90   # correct a unit-entry error
+  CODE_NCCI0: 0.0  # column-2 code never payable with column-1: remove it, no revenue to save
+  DUPL: 0.0
+  TIME: 0.0        # lateness cannot be fixed at review time
+  PRCE: 0.0        # excess over contract price is never payable
+  NCOV: 0.50       # collect from patient
+  BENX: 0.50       # collect from patient
+  MNEC: 0.40       # add supporting documentation / diagnosis
+  noise: 0.0

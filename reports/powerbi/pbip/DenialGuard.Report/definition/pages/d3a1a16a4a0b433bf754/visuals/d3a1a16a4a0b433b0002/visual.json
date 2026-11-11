@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d3a1a16a4a0b433b0002",
+  "position": {
+    "x": 16,
+    "y": 44,
+    "width": 1248,
+    "height": 32,
+    "z": 2,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Data honesty: claims are SIMULATED using the published DHA eClaimLink field structure (NPHIES mapping note in docs/data_dictionary.md). Code sets and edit rules come from real public sources listed in data/reference/SOURCES.md. No result describes real UAE or Saudi denial rates. Deadlines: DHIC PD-05-2025 (45 days initial, 30 days resubmission).",
+                    "textStyle": {
+                      "fontFamily": "Arial Narrow",
+                      "fontSize": "9pt",
+                      "fontWeight": "normal",
+                      "color": "#666666"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

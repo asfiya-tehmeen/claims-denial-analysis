@@ -1,0 +1,38 @@
+table dim_payer
+	lineageTag: 89bba9ed-fd27-43f1-809c-aff4c098c41d
+
+	column payer_key
+		dataType: int64
+		isHidden
+		lineageTag: 367745d9-d02f-4565-a2d9-0c8bd5251aa0
+		summarizeBy: none
+		sourceColumn: payer_key
+
+	column payer_id
+		dataType: string
+		lineageTag: 5b7632b7-7db1-4947-a664-4665672fcb0d
+		summarizeBy: none
+		sourceColumn: payer_id
+
+	column payer_name
+		dataType: string
+		lineageTag: 11fe4c12-ddee-4207-b1b9-c3cf6822251e
+		summarizeBy: none
+		sourceColumn: payer_name
+
+	column payer_kind
+		dataType: string
+		lineageTag: d3cf0807-64a5-4592-82a5-ea98b3fe8abf
+		summarizeBy: none
+		sourceColumn: payer_kind
+
+	partition dim_payer = m
+		mode: import
+		source =
+				let
+				Source = Csv.Document(File.Contents("C:\Users\exube\OneDrive\Desktop\resume-builder-main\projects\e-claims-denial-analysis\reports\powerbi\dim_payer.csv"), [Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"payer_key"}),
+				Typed = Table.TransformColumnTypes(Blanks, {{"payer_key", Int64.Type}, {"payer_id", type text}, {"payer_name", type text}, {"payer_kind", type text}}, "en-US")
+				in Typed
+

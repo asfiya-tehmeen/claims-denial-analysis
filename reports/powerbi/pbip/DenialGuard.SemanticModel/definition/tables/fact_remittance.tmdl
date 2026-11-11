@@ -1,0 +1,141 @@
+table fact_remittance
+	lineageTag: b29730c8-b9b8-4c95-975b-733c1abafa3f
+
+	column activity_id
+		dataType: string
+		lineageTag: 0fad0c1b-8e4a-4eff-a389-9d7148ba056f
+		summarizeBy: none
+		sourceColumn: activity_id
+
+	column claim_id
+		dataType: string
+		lineageTag: 03e38a77-85e8-4349-bd39-ee9b8f2add5c
+		summarizeBy: none
+		sourceColumn: claim_id
+
+	column round
+		dataType: int64
+		lineageTag: 04670b50-e87c-43aa-97fa-027cf2d71826
+		summarizeBy: none
+		sourceColumn: round
+
+	column round_label
+		dataType: string
+		lineageTag: 7a338151-250b-4ee1-8d41-9972b196ae98
+		summarizeBy: none
+		sourceColumn: round_label
+
+	column claim_round_id
+		dataType: string
+		isHidden
+		lineageTag: a9ed31a8-46b2-4b88-b94c-4b3a0a8d8763
+		summarizeBy: none
+		sourceColumn: claim_round_id
+
+	column payer_key
+		dataType: int64
+		isHidden
+		lineageTag: eb402f96-bba9-4c2c-be89-0a866eb222c8
+		summarizeBy: none
+		sourceColumn: payer_key
+
+	column service_line_key
+		dataType: int64
+		isHidden
+		lineageTag: 3df9a7ba-ba75-4ab4-93f8-8eb96e8836ec
+		summarizeBy: none
+		sourceColumn: service_line_key
+
+	column provider_key
+		dataType: int64
+		isHidden
+		lineageTag: 81ef16dc-2bb3-4434-b566-8dc8407adfa7
+		summarizeBy: none
+		sourceColumn: provider_key
+
+	column settlement_date_key
+		dataType: int64
+		isHidden
+		lineageTag: b94a881a-2482-4349-b1a0-a743290c86cc
+		summarizeBy: none
+		sourceColumn: settlement_date_key
+
+	column denial_code_key
+		dataType: int64
+		isHidden
+		lineageTag: f9be88e0-bfee-40db-853e-2f33156eb145
+		summarizeBy: none
+		sourceColumn: denial_code_key
+
+	column settlement_date
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 8804bef6-07db-49d1-b60c-c1b300a50a8b
+		summarizeBy: none
+		sourceColumn: settlement_date
+
+	column payment_amount
+		dataType: double
+		lineageTag: 03bcb452-0be9-4bf6-aa46-3ddd7cfdae2d
+		summarizeBy: none
+		sourceColumn: payment_amount
+
+	column is_denied
+		dataType: int64
+		lineageTag: 9c166f71-6140-41ea-851d-6e2cb21889b2
+		summarizeBy: none
+		sourceColumn: is_denied
+
+	column line_net
+		dataType: double
+		lineageTag: 76a381ad-fcd7-4f48-87ae-92c4db343b66
+		summarizeBy: none
+		sourceColumn: line_net
+
+	column days_to_settlement
+		dataType: int64
+		lineageTag: 3750f23c-0c70-4275-816e-218bb5931ecb
+		summarizeBy: none
+		sourceColumn: days_to_settlement
+
+	column deadline_days
+		dataType: int64
+		lineageTag: 3288e410-22d1-405c-bfc4-b7be7dc74819
+		summarizeBy: none
+		sourceColumn: deadline_days
+
+	column within_deadline
+		dataType: int64
+		lineageTag: 7c75514c-c433-46f4-bdb7-34dd3a0d83b0
+		summarizeBy: none
+		sourceColumn: within_deadline
+
+	column late_payment_days
+		dataType: int64
+		lineageTag: 8a4ea80c-19a1-4b7e-98e0-dca5190c3c20
+		summarizeBy: none
+		sourceColumn: late_payment_days
+
+	column late_payment_fee_aed
+		dataType: double
+		lineageTag: d2202d20-e073-4345-8aa7-c1f9d9e13396
+		summarizeBy: none
+		sourceColumn: late_payment_fee_aed
+
+	column ar_eligible
+		dataType: int64
+		isHidden
+		lineageTag: fcff929c-8d1f-42e2-9d9e-2779c352cdd8
+		summarizeBy: none
+		sourceColumn: ar_eligible
+
+	partition fact_remittance = m
+		mode: import
+		source =
+				let
+				Source = Csv.Document(File.Contents("C:\Users\exube\OneDrive\Desktop\resume-builder-main\projects\e-claims-denial-analysis\reports\powerbi\fact_remittance.csv"), [Delimiter=",", Columns=20, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"round", "payer_key", "service_line_key", "provider_key", "settlement_date_key", "denial_code_key", "settlement_date", "payment_amount", "is_denied", "line_net", "days_to_settlement", "deadline_days", "within_deadline", "late_payment_days", "late_payment_fee_aed", "ar_eligible"}),
+				Typed = Table.TransformColumnTypes(Blanks, {{"activity_id", type text}, {"claim_id", type text}, {"round", Int64.Type}, {"round_label", type text}, {"claim_round_id", type text}, {"payer_key", Int64.Type}, {"service_line_key", Int64.Type}, {"provider_key", Int64.Type}, {"settlement_date_key", Int64.Type}, {"denial_code_key", Int64.Type}, {"settlement_date", type date}, {"payment_amount", type number}, {"is_denied", Int64.Type}, {"line_net", type number}, {"days_to_settlement", Int64.Type}, {"deadline_days", Int64.Type}, {"within_deadline", Int64.Type}, {"late_payment_days", Int64.Type}, {"late_payment_fee_aed", type number}, {"ar_eligible", Int64.Type}}, "en-US")
+				in Typed
+

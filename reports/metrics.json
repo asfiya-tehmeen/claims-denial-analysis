@@ -1,0 +1,1045 @@
+{
+  "data": {
+    "claims": 55309,
+    "lines": 135706,
+    "remittance_rows": 143795,
+    "service_months": 24,
+    "period": [
+      "2024-10-01",
+      "2026-09-30"
+    ],
+    "dq_checks": 16,
+    "dq_checks_with_failures": 8,
+    "lines_quarantined": 136
+  },
+  "kpis": {
+    "claims": 55309,
+    "lines": 135706,
+    "net_billed_aed": 41121950.37,
+    "initial_denied_aed": 5405143.92,
+    "final_denied_aed": 4141231.14,
+    "recovered_aed": 1263912.78,
+    "clean_claim_rate": 0.7367155435824188,
+    "first_pass_yield": 0.7884069500442966,
+    "initial_denial_rate_count": 0.12258116811342167,
+    "initial_denial_rate_value": 0.13144181808903754,
+    "avoidable_denial_share": 0.8627402635377014,
+    "final_denial_rate_value": 0.10070609741850088,
+    "resubmission_overturn_rate": 0.4664550569903333,
+    "median_days_to_payment": 29.0,
+    "late_submission_fee_aed": 10014.93,
+    "ar_days_last12_avg": 37.51758352262941,
+    "initial_settlements": 55281,
+    "pct_initial_within_45d": 0.8608382626942349,
+    "pct_resubmission_within_30d": 0.8574938574938575,
+    "late_payment_fee_due_aed": 34454.21
+  },
+  "scorecard": [
+    {
+      "payer_id": "P01",
+      "payer_name": "Falcon Health Insurance",
+      "payer_kind": "insurer",
+      "claims": 14024,
+      "lines": 34229,
+      "net_billed_aed": 10663101.47,
+      "initial_denial_rate_count": 0.11738584241432704,
+      "initial_denial_rate_value": 0.12544822477432546,
+      "expected_denial_rate_value": 0.13160108605600992,
+      "denial_rate_vs_expected": 0.9532461207875915,
+      "avoidable_denial_share": 0.8504187682264609,
+      "resubmission_overturn_rate": 0.4509068167604753,
+      "final_denial_rate_value": 0.10250335449541591,
+      "final_denied_aed": 1093003.67,
+      "median_days_to_payment": 26.0,
+      "pct_initial_within_45d": 0.9675440473642913,
+      "pct_resubmission_within_30d": 0.9826589595375722,
+      "late_payment_fee_due_aed": 743.95,
+      "ar_days_last12_avg": 30.292620912807617
+    },
+    {
+      "payer_id": "P02",
+      "payer_name": "Oasis Assurance",
+      "payer_kind": "insurer",
+      "claims": 10690,
+      "lines": 26237,
+      "net_billed_aed": 7779399.76,
+      "initial_denial_rate_count": 0.13195106147806532,
+      "initial_denial_rate_value": 0.1319704670890975,
+      "expected_denial_rate_value": 0.12973880578220678,
+      "denial_rate_vs_expected": 1.0172011858243633,
+      "avoidable_denial_share": 0.8505042638539428,
+      "resubmission_overturn_rate": 0.49201943095072864,
+      "final_denial_rate_value": 0.09794708762980563,
+      "final_denied_aed": 761969.55,
+      "median_days_to_payment": 30.0,
+      "pct_initial_within_45d": 0.9197005147402901,
+      "pct_resubmission_within_30d": 0.9497319034852547,
+      "late_payment_fee_due_aed": 1178.25,
+      "ar_days_last12_avg": 34.60397119423348
+    },
+    {
+      "payer_id": "P03",
+      "payer_name": "Pearl Care TPA",
+      "payer_kind": "TPA",
+      "claims": 9951,
+      "lines": 24388,
+      "net_billed_aed": 7920565.7,
+      "initial_denial_rate_count": 0.11390847958012137,
+      "initial_denial_rate_value": 0.12564165334806643,
+      "expected_denial_rate_value": 0.13263578131359885,
+      "denial_rate_vs_expected": 0.9472681662801399,
+      "avoidable_denial_share": 0.8695514519742628,
+      "resubmission_overturn_rate": 0.46343467543138867,
+      "final_denial_rate_value": 0.09324378812992981,
+      "final_denied_aed": 738543.55,
+      "median_days_to_payment": 24.0,
+      "pct_initial_within_45d": 0.9847159376571142,
+      "pct_resubmission_within_30d": 0.9865399841646872,
+      "late_payment_fee_due_aed": 208.38,
+      "ar_days_last12_avg": 27.45601727421668
+    },
+    {
+      "payer_id": "P04",
+      "payer_name": "Dune Mutual Insurance",
+      "payer_kind": "insurer",
+      "claims": 8155,
+      "lines": 20107,
+      "net_billed_aed": 5370671.57,
+      "initial_denial_rate_count": 0.13721589496195355,
+      "initial_denial_rate_value": 0.15703440975817876,
+      "expected_denial_rate_value": 0.13142640341833908,
+      "denial_rate_vs_expected": 1.1948467406380106,
+      "avoidable_denial_share": 0.8512136234066862,
+      "resubmission_overturn_rate": 0.4747393744987971,
+      "final_denial_rate_value": 0.11712922337568793,
+      "final_denied_aed": 629062.59,
+      "median_days_to_payment": 55.0,
+      "pct_initial_within_45d": 0.36708394698085417,
+      "pct_resubmission_within_30d": 0.3464203233256351,
+      "late_payment_fee_due_aed": 30333.54,
+      "ar_days_last12_avg": 76.88828491875573
+    },
+    {
+      "payer_id": "P05",
+      "payer_name": "Marina Health Partners TPA",
+      "payer_kind": "TPA",
+      "claims": 6720,
+      "lines": 16581,
+      "net_billed_aed": 5142793.58,
+      "initial_denial_rate_count": 0.12068029672516736,
+      "initial_denial_rate_value": 0.1382664108404677,
+      "expected_denial_rate_value": 0.13213949392149127,
+      "denial_rate_vs_expected": 1.0463670378714833,
+      "avoidable_denial_share": 0.9238300832734233,
+      "resubmission_overturn_rate": 0.43256997455470736,
+      "final_denial_rate_value": 0.10237955340995818,
+      "final_denied_aed": 526516.91,
+      "median_days_to_payment": 28.0,
+      "pct_initial_within_45d": 0.9451973194341028,
+      "pct_resubmission_within_30d": 0.9685314685314685,
+      "late_payment_fee_due_aed": 547.96,
+      "ar_days_last12_avg": 33.47555336330956
+    },
+    {
+      "payer_id": "P06",
+      "payer_name": "Crescent Benefits TPA",
+      "payer_kind": "TPA",
+      "claims": 5769,
+      "lines": 14164,
+      "net_billed_aed": 4245418.29,
+      "initial_denial_rate_count": 0.11416266591358373,
+      "initial_denial_rate_value": 0.11570519002969823,
+      "expected_denial_rate_value": 0.1311092344218668,
+      "denial_rate_vs_expected": 0.8825098440998947,
+      "avoidable_denial_share": 0.8394264220494185,
+      "resubmission_overturn_rate": 0.4789391575663027,
+      "final_denial_rate_value": 0.09236660399840237,
+      "final_denied_aed": 392134.87,
+      "median_days_to_payment": 32.0,
+      "pct_initial_within_45d": 0.8781417923383602,
+      "pct_resubmission_within_30d": 0.9327485380116959,
+      "late_payment_fee_due_aed": 1442.13,
+      "ar_days_last12_avg": 36.21730348282884
+    }
+  ],
+  "leakage_by_category": [
+    {
+      "denial_category": "Medical necessity",
+      "initial_denied_aed": 1621325.64,
+      "final_denied_aed": 1083328.01
+    },
+    {
+      "denial_category": "Authorisation",
+      "initial_denied_aed": 1363607.59,
+      "final_denied_aed": 1052274.14
+    },
+    {
+      "denial_category": "Coding",
+      "initial_denied_aed": 1074452.6,
+      "final_denied_aed": 781980.14
+    },
+    {
+      "denial_category": "Non-covered",
+      "initial_denied_aed": 479878.66,
+      "final_denied_aed": 420841.74
+    },
+    {
+      "denial_category": "Eligibility",
+      "initial_denied_aed": 323687.03,
+      "final_denied_aed": 316659.02
+    },
+    {
+      "denial_category": "Duplicate",
+      "initial_denied_aed": 206333.05,
+      "final_denied_aed": 205904.67
+    },
+    {
+      "denial_category": "Timely filing",
+      "initial_denied_aed": 202934.61,
+      "final_denied_aed": 193601.63
+    },
+    {
+      "denial_category": "Price",
+      "initial_denied_aed": 51101.95,
+      "final_denied_aed": 47715.56
+    },
+    {
+      "denial_category": "Other",
+      "initial_denied_aed": 81822.79,
+      "final_denied_aed": 38926.23
+    }
+  ],
+  "leakage_by_service_line": [
+    {
+      "service_line": "day_surgery",
+      "final_denied_aed": 1489546.32
+    },
+    {
+      "service_line": "radiology",
+      "final_denied_aed": 1110190.01
+    },
+    {
+      "service_line": "physiotherapy",
+      "final_denied_aed": 579405.76
+    },
+    {
+      "service_line": "outpatient",
+      "final_denied_aed": 482282.72
+    },
+    {
+      "service_line": "laboratory",
+      "final_denied_aed": 233979.59
+    },
+    {
+      "service_line": "emergency",
+      "final_denied_aed": 164192.89
+    },
+    {
+      "service_line": "pharmacy",
+      "final_denied_aed": 81633.85
+    }
+  ],
+  "model": {
+    "split": {
+      "train_months": [
+        1,
+        15
+      ],
+      "valid_months": [
+        16,
+        18
+      ],
+      "test_months": [
+        19,
+        24
+      ],
+      "train_lines": 77080,
+      "valid_lines": 20752,
+      "test_lines": 37874,
+      "test_denial_rate": 0.12546865923852776
+    },
+    "test": {
+      "baseline": {
+        "auc": 0.6000596369365616,
+        "auc_pr": 0.18647231937688424,
+        "brier": 0.10765456705659793
+      },
+      "rules": {
+        "auc": 0.8456318424975964,
+        "auc_pr": 0.4956675133021182,
+        "brier": 0.09045783387020119,
+        "precision": 0.6123728813559322,
+        "recall": 0.7603114478114478,
+        "share_flagged": 0.15577969055288587
+      },
+      "logreg": {
+        "auc": 0.9006300576971128,
+        "auc_pr": 0.7930711015362341,
+        "brier": 0.04352002209373016
+      },
+      "lightgbm": {
+        "auc": 0.9022816239554737,
+        "auc_pr": 0.7943087191758903,
+        "brier": 0.043486175662554964
+      },
+      "on_scrubber_clean_lines": {
+        "lines": 31974,
+        "denial_rate": 0.035622693438418715,
+        "baseline": {
+          "auc": 0.5883176520985341,
+          "auc_pr": 0.05008348115960662,
+          "brier": 0.043616138034767195
+        },
+        "logreg": {
+          "auc": 0.6490313434401832,
+          "auc_pr": 0.07659842316576497,
+          "brier": 0.033758605334554624
+        },
+        "lightgbm": {
+          "auc": 0.656524538763275,
+          "auc_pr": 0.08377220678668942,
+          "brier": 0.03370433398227837
+        }
+      }
+    },
+    "logreg_C": 0.1,
+    "lightgbm_trees": 169,
+    "shap_top_features": {
+      "n_scrubber_flags": 0.972479536769136,
+      "dx_support": 0.15739765611543088,
+      "code": 0.12012248589151284,
+      "clinician_id": 0.10365642926057121,
+      "days_to_coverage_end": 0.09160445997555493,
+      "principal_dx": 0.08292943747198556,
+      "payer_id": 0.07119009491929025,
+      "flag_NCOV_PLAN_EXCLUSION": 0.03936739807160168,
+      "flag_MNEC_DX_UNSUPPORTED": 0.03848642013860605,
+      "flag_PRCE_ABOVE_CONTRACT": 0.03841345113252986,
+      "days_service_to_submission": 0.032352059728698444,
+      "claim_net": 0.029460786475961537,
+      "net": 0.021310489690917676,
+      "days_since_coverage_start": 0.01860664558382506,
+      "age": 0.01754735346280902
+    }
+  },
+  "worklist_design": {
+    "capacity_lines_per_day": 45,
+    "submission_days": 253,
+    "coder_hours": 1518.0,
+    "lines_reviewed": {
+      "baseline": 8981,
+      "lightgbm": 8981,
+      "logreg": 8981,
+      "rules": 5845,
+      "rules_then_lgbm": 8981
+    },
+    "test_lines": 37874,
+    "assumptions": {
+      "coders": 1,
+      "review_hours_per_day": 6,
+      "minutes_per_line": 8,
+      "bootstrap_reps": 1000,
+      "fix_rate": {
+        "AUTH": 0.8,
+        "ELIG": 0.5,
+        "CODE_MOD": 0.7,
+        "CODE_DX": 0.9,
+        "CODE_MUE": 0.9,
+        "CODE_NCCI0": 0.0,
+        "DUPL": 0.0,
+        "TIME": 0.0,
+        "PRCE": 0.0,
+        "NCOV": 0.5,
+        "BENX": 0.5,
+        "MNEC": 0.4,
+        "noise": 0.0
+      }
+    }
+  },
+  "change_detection_blind": {
+    "series_monitored": 42,
+    "monitored_weeks": 76,
+    "alerts": {
+      "cusum": 10,
+      "naive": 40
+    },
+    "first_cusum_alert_per_series": [
+      {
+        "payer_id": "P04",
+        "service_line": "physiotherapy",
+        "alert_week": "2025-06-30"
+      },
+      {
+        "payer_id": "P03",
+        "service_line": "radiology",
+        "alert_week": "2025-08-04"
+      },
+      {
+        "payer_id": "P02",
+        "service_line": "physiotherapy",
+        "alert_week": "2025-08-25"
+      },
+      {
+        "payer_id": "P05",
+        "service_line": "radiology",
+        "alert_week": "2025-09-22"
+      },
+      {
+        "payer_id": "P02",
+        "service_line": "laboratory",
+        "alert_week": "2026-09-07"
+      },
+      {
+        "payer_id": "P04",
+        "service_line": "radiology",
+        "alert_week": "2026-09-28"
+      }
+    ],
+    "payment_alerts": [
+      {
+        "payer_id": "P04",
+        "alert_week": "2025-10-13",
+        "baseline_median_days": 32.8
+      }
+    ]
+  },
+  "drivers": {
+    "payer_cells": {
+      "tested": 378,
+      "findings": 24,
+      "top": [
+        {
+          "payer_id": "P03",
+          "service_line": "physiotherapy",
+          "category": "Medical necessity",
+          "lines": 3040,
+          "rate": 0.1194,
+          "peer_rate": 0.0464,
+          "excess_aed": 49831.3037,
+          "q_value": 0.0
+        },
+        {
+          "payer_id": "P04",
+          "service_line": "radiology",
+          "category": "Medical necessity",
+          "lines": 831,
+          "rate": 0.1384,
+          "peer_rate": 0.0949,
+          "excess_aed": 47347.4748,
+          "q_value": 0.0015
+        },
+        {
+          "payer_id": "P05",
+          "service_line": "physiotherapy",
+          "category": "Non-covered",
+          "lines": 2145,
+          "rate": 0.172,
+          "peer_rate": 0.1063,
+          "excess_aed": 23203.5345,
+          "q_value": 0.0
+        },
+        {
+          "payer_id": "P04",
+          "service_line": "physiotherapy",
+          "category": "Eligibility",
+          "lines": 2041,
+          "rate": 0.0808,
+          "peer_rate": 0.0219,
+          "excess_aed": 19976.789,
+          "q_value": 0.0
+        },
+        {
+          "payer_id": "P02",
+          "service_line": "physiotherapy",
+          "category": "Non-covered",
+          "lines": 2888,
+          "rate": 0.1385,
+          "peer_rate": 0.1099,
+          "excess_aed": 14951.3763,
+          "q_value": 0.0002
+        },
+        {
+          "payer_id": "P02",
+          "service_line": "physiotherapy",
+          "category": "Authorisation",
+          "lines": 2888,
+          "rate": 0.0322,
+          "peer_rate": 0.008,
+          "excess_aed": 14622.7338,
+          "q_value": 0.0
+        },
+        {
+          "payer_id": "P02",
+          "service_line": "physiotherapy",
+          "category": "Eligibility",
+          "lines": 2888,
+          "rate": 0.045,
+          "peer_rate": 0.0258,
+          "excess_aed": 11897.6395,
+          "q_value": 0.0
+        },
+        {
+          "payer_id": "P02",
+          "service_line": "outpatient",
+          "category": "Medical necessity",
+          "lines": 9365,
+          "rate": 0.0396,
+          "peer_rate": 0.0319,
+          "excess_aed": 11847.2813,
+          "q_value": 0.0022
+        }
+      ]
+    },
+    "facility_cells": {
+      "tested": 126,
+      "findings": 5,
+      "top": [
+        {
+          "facility_id": "FAC-HH",
+          "service_line": "radiology",
+          "category": "Authorisation",
+          "lines": 3212,
+          "rate": 0.1087,
+          "peer_rate": 0.035,
+          "excess_aed": 369630.9606,
+          "q_value": 0.0
+        },
+        {
+          "facility_id": "FAC-HH",
+          "service_line": "physiotherapy",
+          "category": "Eligibility",
+          "lines": 9485,
+          "rate": 0.0348,
+          "peer_rate": 0.0215,
+          "excess_aed": 23056.2084,
+          "q_value": 0.0
+        },
+        {
+          "facility_id": "FAC-CM",
+          "service_line": "physiotherapy",
+          "category": "Non-covered",
+          "lines": 6831,
+          "rate": 0.1256,
+          "peer_rate": 0.1073,
+          "excess_aed": 20821.456,
+          "q_value": 0.0064
+        },
+        {
+          "facility_id": "FAC-HH",
+          "service_line": "laboratory",
+          "category": "Medical necessity",
+          "lines": 22547,
+          "rate": 0.0358,
+          "peer_rate": 0.0293,
+          "excess_aed": 10834.1375,
+          "q_value": 0.0096
+        },
+        {
+          "facility_id": "FAC-CM",
+          "service_line": "laboratory",
+          "category": "Non-covered",
+          "lines": 14700,
+          "rate": 0.0303,
+          "peer_rate": 0.0252,
+          "excess_aed": 5262.9853,
+          "q_value": 0.0358
+        }
+      ]
+    },
+    "clinician_cells": {
+      "tested": 351,
+      "findings": 11,
+      "top": [
+        {
+          "clinician_id": "CLN-024",
+          "specialty": "radiology",
+          "category": "Authorisation",
+          "lines": 1574,
+          "rate": 0.1131,
+          "peer_rate": 0.0642,
+          "excess_aed": 118005.1047,
+          "q_value": 0.0
+        },
+        {
+          "clinician_id": "CLN-022",
+          "specialty": "radiology",
+          "category": "Authorisation",
+          "lines": 1638,
+          "rate": 0.1044,
+          "peer_rate": 0.0671,
+          "excess_aed": 99102.8911,
+          "q_value": 0.0001
+        },
+        {
+          "clinician_id": "CLN-027",
+          "specialty": "physiotherapy",
+          "category": "Non-covered",
+          "lines": 3442,
+          "rate": 0.1415,
+          "peer_rate": 0.1079,
+          "excess_aed": 21764.3524,
+          "q_value": 0.0
+        },
+        {
+          "clinician_id": "CLN-013",
+          "specialty": "internal_medicine",
+          "category": "Medical necessity",
+          "lines": 5111,
+          "rate": 0.0532,
+          "peer_rate": 0.0317,
+          "excess_aed": 17709.9415,
+          "q_value": 0.0
+        },
+        {
+          "clinician_id": "CLN-029",
+          "specialty": "physiotherapy",
+          "category": "Medical necessity",
+          "lines": 3389,
+          "rate": 0.0773,
+          "peer_rate": 0.0555,
+          "excess_aed": 13219.1121,
+          "q_value": 0.0
+        },
+        {
+          "clinician_id": "CLN-030",
+          "specialty": "physiotherapy",
+          "category": "Eligibility",
+          "lines": 3044,
+          "rate": 0.0434,
+          "peer_rate": 0.026,
+          "excess_aed": 12166.6748,
+          "q_value": 0.0
+        },
+        {
+          "clinician_id": "CLN-026",
+          "specialty": "physiotherapy",
+          "category": "Eligibility",
+          "lines": 3108,
+          "rate": 0.0489,
+          "peer_rate": 0.0246,
+          "excess_aed": 11226.6464,
+          "q_value": 0.0
+        },
+        {
+          "clinician_id": "CLN-020",
+          "specialty": "pathology",
+          "category": "Medical necessity",
+          "lines": 22547,
+          "rate": 0.0358,
+          "peer_rate": 0.0293,
+          "excess_aed": 10834.1375,
+          "q_value": 0.0107
+        }
+      ]
+    },
+    "code_pairs_top": [
+      {
+        "denied_code": "43235",
+        "cobilled_code": "43239",
+        "denial_code": "PRCE-002",
+        "denied_lines": 86,
+        "denied_aed": 250980.0
+      },
+      {
+        "denied_code": "45378",
+        "cobilled_code": "45380",
+        "denial_code": "PRCE-002",
+        "denied_lines": 9,
+        "denied_aed": 31920.0
+      },
+      {
+        "denied_code": "99213",
+        "cobilled_code": "96372",
+        "denial_code": "PRCE-002",
+        "denied_lines": 110,
+        "denied_aed": 23863.5
+      },
+      {
+        "denied_code": "43235",
+        "cobilled_code": "96372",
+        "denial_code": "PRCE-002",
+        "denied_lines": 7,
+        "denied_aed": 21210.0
+      },
+      {
+        "denied_code": "99214",
+        "cobilled_code": "96372",
+        "denial_code": "PRCE-002",
+        "denied_lines": 59,
+        "denied_aed": 15790.08
+      }
+    ]
+  },
+  "powerbi": {
+    "tables": {
+      "fact_claim_line": 135706,
+      "fact_remittance": 143795,
+      "dim_payer": 6,
+      "dim_service_line": 7,
+      "dim_provider": 39,
+      "dim_date": 1062,
+      "dim_denial_code": 21,
+      "fact_change_alert": 10
+    },
+    "expected_values_rows": 274,
+    "measures_documented": 25
+  },
+  "score": {
+    "ceiling": {
+      "oracle": {
+        "auc": 0.915997388722277,
+        "auc_pr": 0.8184231797040991,
+        "brier": 0.039554460981864346
+      },
+      "baseline": {
+        "auc": 0.6000596369365616,
+        "auc_pr": 0.18647231937688424,
+        "brier": 0.10765456705659793
+      },
+      "rules": {
+        "auc": 0.8456318424975964,
+        "auc_pr": 0.4956675133021182,
+        "brier": 0.09045783387020119
+      },
+      "logreg": {
+        "auc": 0.9006300576971128,
+        "auc_pr": 0.7930711015362341,
+        "brier": 0.04352002209373016,
+        "share_of_oracle_auc_pr": 0.969023264740582
+      },
+      "lightgbm": {
+        "auc": 0.9022816239554737,
+        "auc_pr": 0.7943087191758903,
+        "brier": 0.043486175662554964,
+        "share_of_oracle_auc_pr": 0.9705354624279736
+      }
+    },
+    "worklist": {
+      "rules": {
+        "aed_recovered": 568859.482,
+        "aed_per_coder_hour": 374.74274176548084,
+        "ci95": [
+          310.6021543148881,
+          446.95226222002634
+        ],
+        "initial_denials_prevented_aed": 675116.101,
+        "lines_reviewed": 5845,
+        "reviewed_lines_denied_share": 0.6104362703165098,
+        "review_hours_used": 779.3333333333334,
+        "aed_per_review_hour_used": 729.9309007698887
+      },
+      "baseline": {
+        "aed_recovered": 530011.9419999999,
+        "aed_per_coder_hour": 349.15147694334644,
+        "ci95": [
+          287.7747073781291,
+          420.3964492753622
+        ],
+        "initial_denials_prevented_aed": 628110.494,
+        "lines_reviewed": 8981,
+        "reviewed_lines_denied_share": 0.17436811045540584,
+        "review_hours_used": 1197.4666666666667,
+        "aed_per_review_hour_used": 442.61101937423444
+      },
+      "logreg": {
+        "aed_recovered": 595642.546,
+        "aed_per_coder_hour": 392.38639393939394,
+        "ci95": [
+          329.61074593214755,
+          464.55189046442683
+        ],
+        "initial_denials_prevented_aed": 712228.333,
+        "lines_reviewed": 8981,
+        "reviewed_lines_denied_share": 0.4035185391381806,
+        "review_hours_used": 1197.4666666666667,
+        "aed_per_review_hour_used": 497.41889488921055
+      },
+      "lightgbm": {
+        "aed_recovered": 597056.622,
+        "aed_per_coder_hour": 393.3179328063241,
+        "ci95": [
+          330.17485998023716,
+          465.0281957674572
+        ],
+        "initial_denials_prevented_aed": 713965.549,
+        "lines_reviewed": 8981,
+        "reviewed_lines_denied_share": 0.404966039416546,
+        "review_hours_used": 1197.4666666666667,
+        "aed_per_review_hour_used": 498.59978454515084
+      },
+      "rules_then_lgbm": {
+        "aed_recovered": 595497.924,
+        "aed_per_coder_hour": 392.29112252964427,
+        "ci95": [
+          328.3512154314888,
+          464.30803949275366
+        ],
+        "initial_denials_prevented_aed": 710670.7590000001,
+        "lines_reviewed": 8981,
+        "reviewed_lines_denied_share": 0.42189065805589576,
+        "review_hours_used": 1197.4666666666667,
+        "aed_per_review_hour_used": 497.29812159002336
+      },
+      "perfect_hindsight": {
+        "aed_recovered": 621850.225,
+        "aed_per_coder_hour": 409.6510046113307,
+        "ci95": [
+          346.7326892951252,
+          483.7921915513834
+        ],
+        "initial_denials_prevented_aed": 645371.27,
+        "lines_reviewed": 8981,
+        "reviewed_lines_denied_share": 0.3533014140964258
+      },
+      "uplift_rules_then_lgbm_vs_rules": {
+        "aed_per_coder_hour": 17.548380764163372,
+        "ci95": [
+          10.370161264822135,
+          26.789021821475625
+        ]
+      },
+      "uplift_lightgbm_vs_rules": {
+        "aed_per_coder_hour": 18.575191040843215,
+        "ci95": [
+          11.12927895256917,
+          27.64227719038208
+        ]
+      },
+      "coder_hours": 1518.0,
+      "test_period_recoverable_aed_total": 621850.2250000001,
+      "added_by_model_by_root_cause": {
+        "MNEC": 20183.93,
+        "ELIG": 6003.64,
+        "NCOV": 221.0,
+        "AUTH": 144.0,
+        "CODE_DX": 43.88,
+        "CODE_MOD": 42.0
+      },
+      "capacity_sensitivity_aed_per_paid_hour": {
+        "10": {
+          "rules": 1503.569848814229,
+          "baseline": 1251.9366907114625,
+          "logreg": 1531.683942687747,
+          "lightgbm": 1530.4380088932808,
+          "rules_then_lgbm": 1530.3440365612648
+        },
+        "20": {
+          "rules": 801.6534990118579,
+          "baseline": 719.761502964427,
+          "logreg": 832.3003947628458,
+          "lightgbm": 834.735235671937,
+          "rules_then_lgbm": 828.7836818181818
+        },
+        "30": {
+          "rules": 552.8301669960474,
+          "baseline": 500.26752272727276,
+          "logreg": 574.6554752964427,
+          "lightgbm": 575.353519762846,
+          "rules_then_lgbm": 572.5774980237155
+        },
+        "45": {
+          "rules": 374.74274176548096,
+          "baseline": 349.15147694334655,
+          "logreg": 392.38639393939394,
+          "lightgbm": 393.31793280632417,
+          "rules_then_lgbm": 392.2911225296443
+        }
+      }
+    },
+    "change_detection": {
+      "true_change": {
+        "payer_id": "P05",
+        "service_line": "radiology",
+        "change_date": "2025-07-14",
+        "first_denied_remittance": "2025-08-29"
+      },
+      "cusum": {
+        "detected": true,
+        "first_alert_week": "2025-09-22",
+        "weeks_to_detect_from_change": 10.0,
+        "weeks_from_first_denied_ra": 3.4285714285714284,
+        "false_alarms": 6,
+        "false_alarms_per_month": 0.34788571428571435,
+        "false_alarm_series": 5
+      },
+      "naive": {
+        "detected": true,
+        "first_alert_week": "2025-09-08",
+        "weeks_to_detect_from_change": 8.0,
+        "weeks_from_first_denied_ra": 1.4285714285714286,
+        "false_alarms": 37,
+        "false_alarms_per_month": 2.145295238095238,
+        "false_alarm_series": 9
+      },
+      "cost_of_change": {
+        "denied_lines": 34,
+        "initial_denied_aed": 8793.0,
+        "final_denied_aed": 6660.0,
+        "denied_lines_submitted_after_alert": 21,
+        "initial_denied_aed_submitted_after_alert": 5553.0
+      },
+      "slow_payer": {
+        "payer_id": "P04",
+        "from_date": "2025-09-01",
+        "detected": true,
+        "weeks_to_detect": 6.0,
+        "false_alarms": 0
+      }
+    },
+    "answer_key_recovery": [
+      {
+        "effect": "P03 stricter on medical necessity for physiotherapy",
+        "method": "payer x service-line driver ranking",
+        "rank": 1,
+        "recovered": true
+      },
+      {
+        "effect": "FAC-HH misses prior auth on high-cost radiology",
+        "method": "facility driver ranking",
+        "rank": 1,
+        "recovered": true
+      },
+      {
+        "effect": "NCCI pair 43239+43235 billed by gastroenterology",
+        "method": "code-pair ranking (PRCE-002 denials)",
+        "rank": 1,
+        "recovered": true
+      },
+      {
+        "effect": "P05 starts requiring prior auth for radiology (2025-07-14)",
+        "method": "binomial CUSUM on weekly authorisation denials",
+        "rank": null,
+        "recovered": true,
+        "detail": "10.0 weeks after the change"
+      },
+      {
+        "effect": "P04 slows payment from 2025-09-01",
+        "method": "CUSUM on weekly median days to payment",
+        "rank": null,
+        "recovered": true,
+        "detail": "6.0 weeks after the change"
+      },
+      {
+        "effect": "CLN-013 documents poorly (more medical-necessity denials)",
+        "method": "clinician vs specialty peers ranking",
+        "rank": 4,
+        "recovered": false
+      }
+    ],
+    "recovered_effects": "5 of 6",
+    "data_quality_and_rules": {
+      "planted_vs_found": {
+        "remittance duplicate rows": {
+          "planted": 288,
+          "found": 288
+        },
+        "non-positive net amounts": {
+          "planted": 136,
+          "found": 136
+        },
+        "gross != patient share + net": {
+          "planted": 136,
+          "found": 136
+        },
+        "settlement before submission (claims)": {
+          "planted": 28,
+          "found": 28
+        }
+      },
+      "scrubber_rule_precision": {
+        "ELIG_OUT_OF_COVERAGE": {
+          "flagged": 1009,
+          "share_with_true_breach": 1.0
+        },
+        "AUTH_MISSING": {
+          "flagged": 643,
+          "share_with_true_breach": 1.0
+        },
+        "AUTH_EXPIRED": {
+          "flagged": 147,
+          "share_with_true_breach": 1.0
+        },
+        "CODE_INVALID_DX": {
+          "flagged": 557,
+          "share_with_true_breach": 1.0
+        },
+        "CODE_MUE_UNITS": {
+          "flagged": 616,
+          "share_with_true_breach": 1.0
+        },
+        "CODE_NCCI_BUNDLED": {
+          "flagged": 106,
+          "share_with_true_breach": 1.0
+        },
+        "CODE_NCCI_MODIFIER": {
+          "flagged": 686,
+          "share_with_true_breach": 1.0
+        },
+        "DUPL_SAME_SERVICE": {
+          "flagged": 886,
+          "share_with_true_breach": 0.9446952595936795
+        },
+        "TIME_FILING_LIMIT": {
+          "flagged": 829,
+          "share_with_true_breach": 1.0
+        },
+        "PRCE_ABOVE_CONTRACT": {
+          "flagged": 2013,
+          "share_with_true_breach": 1.0
+        },
+        "NCOV_PLAN_EXCLUSION": {
+          "flagged": 2769,
+          "share_with_true_breach": 1.0
+        },
+        "BENX_LIMIT_REACHED": {
+          "flagged": 1338,
+          "share_with_true_breach": 1.0
+        },
+        "MNEC_DX_UNSUPPORTED": {
+          "flagged": 10432,
+          "share_denied_for_this_reason": 0.1977569018404908
+        }
+      },
+      "denials_rules_cannot_see": {
+        "ELIG_retro_termination_denials": 302,
+        "AUTH_denials_not_flagged": 34,
+        "noise_denials": 1864
+      }
+    },
+    "answer_key_effects": {
+      "payer_service_mnec": {
+        "payer_id": "P03",
+        "service_line": "physiotherapy",
+        "logit": 1.6193789084392751
+      },
+      "facility_radiology_auth": {
+        "facility_id": "FAC-HH",
+        "service_line": "radiology",
+        "scope": "high_cost",
+        "auth_success": 0.8204336654161051
+      },
+      "ncci_pair": {
+        "col1": "43239",
+        "col2": "43235",
+        "department": "gastroenterology",
+        "rate": 0.18275671584374165
+      },
+      "auth_policy_change": {
+        "payer_id": "P05",
+        "service_line": "radiology",
+        "change_date": "2025-07-14",
+        "learn_delay_weeks": 8,
+        "adoption_weeks": 10
+      },
+      "slow_payer": {
+        "payer_id": "P04",
+        "from_date": "2025-09-01",
+        "median_days": 68.40996150478456
+      },
+      "weak_doctor": {
+        "clinician_id": "CLN-013",
+        "logit": 1.1308147647274913
+      }
+    }
+  }
+}

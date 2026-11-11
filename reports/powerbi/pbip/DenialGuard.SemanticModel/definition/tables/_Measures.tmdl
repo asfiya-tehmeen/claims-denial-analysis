@@ -1,0 +1,232 @@
+table _Measures
+	lineageTag: cbf3dacf-a86f-44ab-b20e-71eb9587a95b
+
+	measure Claims = CALCULATE ( COUNTROWS ( fact_claim_line ), fact_claim_line[is_claim_anchor] = 1 )
+		formatString: #,0
+		displayFolder: 1 Volume
+		lineageTag: d992b3b8-0ea6-40ac-bb56-3a5a5477b64d
+
+	measure Lines = COUNTROWS ( fact_claim_line )
+		formatString: #,0
+		displayFolder: 1 Volume
+		lineageTag: a2365440-0625-41a9-8689-d49af6a8127f
+
+	measure 'Net Billed AED' = SUM ( fact_claim_line[net] )
+		formatString: #,0
+		displayFolder: 1 Volume
+		lineageTag: 76dfceb1-4e84-4040-9cbe-9a79fbeb5a00
+
+	measure 'Initial Denied AED' = SUM ( fact_claim_line[initial_denied_amount] )
+		formatString: #,0
+		displayFolder: 1 Volume
+		lineageTag: a08e5710-a81a-404e-a4e6-9a181667324b
+
+	measure 'Final Denied AED' = SUM ( fact_claim_line[final_denied_amount] )
+		formatString: #,0
+		displayFolder: 1 Volume
+		lineageTag: 8ccab09b-1f6f-4d9a-a497-1a363d7f82f8
+
+	measure 'Recovered on Resubmission AED' = SUM ( fact_claim_line[recovered_on_resubmission] )
+		formatString: #,0
+		displayFolder: 1 Volume
+		lineageTag: fb5e1624-b2df-4f0c-be24-50e2031ef979
+
+	measure 'Clean Claim Rate' =
+			DIVIDE (
+			    CALCULATE ( [Claims], fact_claim_line[claim_scrubber_clean] = 1 ),
+			    [Claims]
+			)
+		formatString: 0.0%
+		displayFolder: 2 Front end
+		lineageTag: 3eb94155-4fba-41c7-b5cb-51ffdc39c3c9
+
+	measure 'First-Pass Yield' =
+			DIVIDE (
+			    CALCULATE ( [Claims], fact_claim_line[claim_first_pass_paid] = 1 ),
+			    [Claims]
+			)
+		formatString: 0.0%
+		displayFolder: 2 Front end
+		lineageTag: f38a6351-12e1-486b-b878-50727d55897e
+
+	measure 'Initial Denial Rate (Count)' = DIVIDE ( CALCULATE ( [Lines], fact_claim_line[is_initial_denied] = 1 ), [Lines] )
+		formatString: 0.0%
+		displayFolder: 3 Denials
+		lineageTag: cf40b09e-55b0-47ae-8b80-84597b454949
+
+	measure 'Initial Denial Rate (Value)' = DIVIDE ( [Initial Denied AED], [Net Billed AED] )
+		formatString: 0.0%
+		displayFolder: 3 Denials
+		lineageTag: faa4a9ef-106e-4b39-bad8-bb9a68806c6a
+
+	measure 'Avoidable Denial Share' =
+			DIVIDE (
+			    CALCULATE ( [Initial Denied AED], fact_claim_line[is_avoidable_denial] = 1 ),
+			    [Initial Denied AED]
+			)
+		formatString: 0.0%
+		displayFolder: 3 Denials
+		lineageTag: 0c12be81-e844-42d6-b04a-32dee2663139
+
+	measure 'Final Denial Rate (Value)' = DIVIDE ( [Final Denied AED], [Net Billed AED] )
+		formatString: 0.0%
+		displayFolder: 3 Denials
+		lineageTag: e9d4ed4e-da44-4ea4-9ed5-a69c68987fb0
+
+	measure 'Resubmission Overturn Rate' =
+			DIVIDE (
+			    CALCULATE ( [Lines], fact_claim_line[was_overturned] = 1 ),
+			    CALCULATE ( [Lines], fact_claim_line[was_resubmitted] = 1 )
+			)
+		formatString: 0.0%
+		displayFolder: 3 Denials
+		lineageTag: 3193f23d-6ef3-4ded-ab28-2f5875c4ac70
+
+	measure 'Expected Denial Rate (Value)' =
+			DIVIDE (
+			    SUMX (
+			        VALUES ( dim_service_line[service_line_key] ),
+			        CALCULATE ( [Net Billed AED] )
+			            * CALCULATE ( [Initial Denial Rate (Value)], REMOVEFILTERS ( dim_payer ) )
+			    ),
+			    [Net Billed AED]
+			)
+		formatString: 0.0%
+		displayFolder: 3 Denials
+		lineageTag: c9fc9b5c-1a4b-4482-b84f-e6baaa6b1585
+
+	measure 'Denial Rate vs Expected' = DIVIDE ( [Initial Denial Rate (Value)], [Expected Denial Rate (Value)] )
+		formatString: 0.00
+		displayFolder: 3 Denials
+		lineageTag: 5c4d44d3-6234-4ed9-9d31-cc474b0fb378
+
+	measure 'Auth Denial Rate (by RA Week)' =
+			CALCULATE (
+			    DIVIDE (
+			        CALCULATE ( [Lines], dim_denial_code[category] = "Authorisation" ),
+			        [Lines]
+			    ),
+			    USERELATIONSHIP ( fact_claim_line[initial_ra_date_key], dim_date[date_key] )
+			)
+		formatString: 0.0%
+		displayFolder: 3 Denials
+		lineageTag: 93f29dc5-b74b-43cc-899b-1ec5e99e8901
+
+	measure 'Median Days to Payment' = CALCULATE ( MEDIAN ( fact_claim_line[days_to_initial_ra] ), fact_claim_line[is_claim_anchor] = 1 )
+		formatString: #,0
+		displayFolder: 4 Payment
+		lineageTag: f93b919f-3773-40bb-8f0b-40b58f1ee583
+
+	measure '% Initial RA Within 45 Days' =
+			VAR AllClaims =
+			    CALCULATETABLE (
+			        VALUES ( fact_remittance[claim_round_id] ),
+			        fact_remittance[round] = 0,
+			        NOT ISBLANK ( fact_remittance[settlement_date] )
+			    )
+			VAR LateClaims =
+			    CALCULATETABLE (
+			        VALUES ( fact_remittance[claim_round_id] ),
+			        fact_remittance[round] = 0,
+			        NOT ISBLANK ( fact_remittance[settlement_date] ),
+			        fact_remittance[within_deadline] = 0      -- blank = 0 in DAX, hence the ISBLANK guard
+			    )
+			RETURN
+			    1 - DIVIDE ( COUNTROWS ( LateClaims ), COUNTROWS ( AllClaims ) )
+		formatString: 0.0%
+		displayFolder: 4 Payment
+		lineageTag: dc0acdd6-2008-4a12-a77c-98986eb94256
+
+	measure '% Resubmission RA Within 30 Days' =
+			VAR AllRounds =
+			    CALCULATETABLE (
+			        VALUES ( fact_remittance[claim_round_id] ),
+			        fact_remittance[round] > 0,
+			        NOT ISBLANK ( fact_remittance[settlement_date] )
+			    )
+			VAR LateRounds =
+			    CALCULATETABLE (
+			        VALUES ( fact_remittance[claim_round_id] ),
+			        fact_remittance[round] > 0,
+			        NOT ISBLANK ( fact_remittance[settlement_date] ),
+			        fact_remittance[within_deadline] = 0      -- blank = 0 in DAX, hence the ISBLANK guard
+			    )
+			RETURN
+			    1 - DIVIDE ( COUNTROWS ( LateRounds ), COUNTROWS ( AllRounds ) )
+		formatString: 0.0%
+		displayFolder: 4 Payment
+		lineageTag: 77594513-3fdb-4685-911a-9efc7e8d8df7
+
+	measure 'Late Payment Fee Due AED' = SUM ( fact_remittance[late_payment_fee_aed] )
+		formatString: #,0
+		displayFolder: 4 Payment
+		lineageTag: 74b2f8e6-b76f-4ef8-8008-a4589462e09e
+
+	measure 'Late Submission Fee AED' = SUMX ( fact_claim_line, fact_claim_line[late_submission_days] * fact_claim_line[net] ) * 0.0003
+		formatString: #,0
+		displayFolder: 4 Payment
+		lineageTag: 1c7c3e8b-7925-4e7f-99e2-bf93e77b8fea
+
+	measure 'AR Balance AED' =
+			VAR D = MAX ( dim_date[date] )
+			VAR Charged =
+			    CALCULATE ( SUM ( fact_claim_line[net] ), REMOVEFILTERS ( dim_date ),
+			        fact_claim_line[ar_eligible] = 1, fact_claim_line[submission_date] <= D )
+			VAR Paid =
+			    CALCULATE ( SUM ( fact_remittance[payment_amount] ), REMOVEFILTERS ( dim_date ),
+			        fact_remittance[ar_eligible] = 1, fact_remittance[settlement_date] <= D )
+			VAR WrittenOff =
+			    CALCULATE ( SUM ( fact_claim_line[final_denied_amount] ), REMOVEFILTERS ( dim_date ),
+			        fact_claim_line[ar_eligible] = 1, fact_claim_line[last_settlement_date] <= D )
+			RETURN
+			    Charged - Paid - WrittenOff
+		formatString: #,0
+		displayFolder: 5 AR
+		lineageTag: ae5d1528-45f4-44c9-97e2-fa0b05b1d36b
+
+	measure 'Avg Daily Charges AED' =
+			VAR D = MAX ( dim_date[date] )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( SUM ( fact_claim_line[net] ), REMOVEFILTERS ( dim_date ),
+			            fact_claim_line[ar_eligible] = 1,
+			            fact_claim_line[submission_date] > D - 90,
+			            fact_claim_line[submission_date] <= D ),
+			        90
+			    )
+		formatString: #,0
+		displayFolder: 5 AR
+		lineageTag: be8f0b7f-5699-425e-8c25-bfefece3ecdd
+
+	measure 'A/R Days' = DIVIDE ( [AR Balance AED], [Avg Daily Charges AED] )
+		formatString: #,0.0
+		displayFolder: 5 AR
+		lineageTag: 4e6113b2-8aa6-4a02-ab63-983e9b97aa49
+
+	measure 'A/R Days (Avg Last 12 Month-Ends)' =
+			VAR Months =
+			    TOPN (
+			        12,
+			        CALCULATETABLE ( VALUES ( dim_date[year_month] ), REMOVEFILTERS ( dim_date ), NOT ISBLANK ( dim_date[sim_month] ) ),
+			        dim_date[year_month], DESC
+			    )
+			RETURN
+			    AVERAGEX (
+			        Months,
+			        VAR ym = dim_date[year_month]
+			        RETURN CALCULATE ( [A/R Days], REMOVEFILTERS ( dim_date ), dim_date[year_month] = ym )
+			    )
+		formatString: #,0.0
+		displayFolder: 5 AR
+		lineageTag: dea01a7a-f13b-487d-8852-a20dee4ceb24
+
+	column Placeholder
+		dataType: string
+		isHidden
+		lineageTag: 35110d24-a4ad-4ce1-96aa-ae6663de1b81
+		sourceColumn: Placeholder
+
+	partition _Measures = m
+		mode: import
+		source = let Source = #table(type table [Placeholder = text], {}) in Source
+

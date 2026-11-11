@@ -1,0 +1,87 @@
+# Simulator configuration. ALL VALUES ARE SIMULATION ASSUMPTIONS unless a `source:` note says otherwise.
+seed: 20261111            # data seed (reproducibility)
+effect_seed: 7919         # draws planted-effect sizes, targets and change dates. Analysis code
+                          # never reads this file's effect section or data/raw/sealed/ (tests/test_sealed.py).
+
+period:
+  start: 2024-10-01
+  end: 2026-09-30         # 24 service months
+n_claims: 55000           # target before duplicates; physio episodes make the exact count vary
+n_members: 22000
+
+facilities:
+  - {id: FAC-HH, name: Harbour Hospital, share: 0.6}
+  - {id: FAC-CM, name: Creekside Medical Centre, share: 0.4}
+
+doctors_per_specialty: {family_medicine: 8, internal_medicine: 6, emergency_medicine: 5, pathology: 2,
+                        radiology: 4, physiotherapy: 5, general_surgery: 3, gastroenterology: 2,
+                        orthopaedics: 2, ophthalmology: 2}
+doctor_offlabel_rate: {mean: 0.08, sd: 0.4}   # lognormal spread: share of orders weakly/un-supported
+
+# Payers: fictional names. No real insurer or TPA is modelled.
+payers:
+  - {id: P01, name: Falcon Health Insurance, kind: insurer, share: 0.25, mnec_strictness: 0.0, noise: 0.012, pay_median_days: 26, auth_lines: [day_surgery], auth_high_cost_radiology: true}
+  - {id: P02, name: Oasis Assurance, kind: insurer, share: 0.20, mnec_strictness: 0.3, noise: 0.015, pay_median_days: 30, auth_lines: [day_surgery, physiotherapy], auth_high_cost_radiology: true}
+  - {id: P03, name: Pearl Care TPA, kind: TPA, share: 0.18, mnec_strictness: -0.2, noise: 0.010, pay_median_days: 24, auth_lines: [day_surgery], auth_high_cost_radiology: true}
+  - {id: P04, name: Dune Mutual Insurance, kind: insurer, share: 0.15, mnec_strictness: 0.5, noise: 0.020, pay_median_days: 34, auth_lines: [day_surgery, physiotherapy], auth_high_cost_radiology: true}
+  - {id: P05, name: Marina Health Partners TPA, kind: TPA, share: 0.12, mnec_strictness: 0.0, noise: 0.012, pay_median_days: 28, auth_lines: [day_surgery], auth_high_cost_radiology: true}
+  - {id: P06, name: Crescent Benefits TPA, kind: TPA, share: 0.10, mnec_strictness: -0.4, noise: 0.018, pay_median_days: 32, auth_lines: [day_surgery], auth_high_cost_radiology: true}
+
+plans:
+  Basic:    {share: 0.45, copay: 0.20, physio_sessions_per_year: 12, excluded_codes: ["97035"], excluded_dx: [Z0000], excluded_drug_classes: [vitamin]}
+  Enhanced: {share: 0.35, copay: 0.10, physio_sessions_per_year: 24, excluded_codes: [], excluded_dx: [], excluded_drug_classes: []}
+  Premium:  {share: 0.20, copay: 0.00, physio_sessions_per_year: null, excluded_codes: [], excluded_dx: [], excluded_drug_classes: []}
+
+payer_price_factor: {P01: 1.00, P02: 0.95, P03: 1.05, P04: 0.90, P05: 1.00, P06: 0.97}
+
+# Provider behaviour (error rates that create denials)
+provider:
+  registration_error_rate: 0.010   # service date outside the coverage dates on file (rule-detectable)
+  retro_termination_rate: 0.04     # members whose payer-side coverage ended earlier than the provider knows (not rule-detectable)
+  auth_success_rate: 0.965         # auth obtained when the provider knows it is required
+  auth_expired_rate: 0.012         # service performed after auth validity
+  auth_validity_days: 30
+  invalid_dx_rate: 0.004           # header (non-billable) ICD code as principal diagnosis
+  mue_unit_error_rate: 0.005       # units above the CMS MUE value on unit-bearing lines
+  ncci_pair_rate: 0.02             # bundled column-2 code billed with its column-1 code
+  ncci_modifier_rate: 0.85         # modifier appended when the edit allows one (indicator 1)
+  duplicate_claim_rate: 0.006      # claim re-billed as a new claim
+  overbilling_rate: 0.015          # billed above contract price (outdated price list)
+  overbilling_range: [0.05, 0.15]
+  submission_lag_median_days: 6
+  late_hold_rate: 0.008            # claims held for 60-200 days
+  em_injection_rate: 0.10
+
+# Payer adjudication
+adjudication:
+  hard_rule_catch: 0.96            # probability a payer catches a deterministic rule breach
+  timely_filing_days: 90           # ASSUMPTION for TIME-001. PD-05-2025 sets a submission deadline
+                                   # (15th of following month) with a delay fee, not a denial.
+  mnec_logit:
+    base: -4.6
+    weak: 2.0
+    none: 3.3
+    line_offset: {outpatient: -0.5, emergency: -1.0, laboratory: 0.0, radiology: 0.2, physiotherapy: 0.0, pharmacy: 0.0, day_surgery: 0.0}
+    doctor_sd: 0.25
+  resubmit_prob: {noise: 0.7, MNEC: 0.6, AUTH: 0.5, CODE_MOD: 0.6, CODE_DX: 0.7, CODE_MUE: 0.6, CODE_NCCI0: 0.05, ELIG: 0.2, NCOV: 0.2, BENX: 0.1, DUPL: 0.03, TIME: 0.3, PRCE: 0.3}
+  overturn_prob: {noise: 0.75, MNEC: 0.40, AUTH: 0.35, CODE_MOD: 0.55, CODE_DX: 0.6, CODE_MUE: 0.5, CODE_NCCI0: 0.0, ELIG: 0.10, NCOV: 0.10, BENX: 0.05, DUPL: 0.0, TIME: 0.10, PRCE: 0.10}
+  reconciliation_prob: 0.3
+  reconciliation_overturn: 0.25
+  resubmission_delay_days: [3, 26]  # provider; PD-05-2025 window is 21 days (later = delay fee)
+
+# Planted effects: RANGES only. The drawn values live in data/raw/sealed/answer_key.json.
+effects:
+  payer_service_mnec: {service_line: physiotherapy, logit_range: [1.2, 1.8]}
+  facility_radiology_auth: {auth_success_range: [0.78, 0.86]}
+  ncci_pair: {col1: "43239", col2: "43235", rate_range: [0.15, 0.25]}
+  # one payer starts requiring prior auth for a service line it did not cover before
+  # (physiotherapy: all codes; radiology: the low-cost codes that did not need auth)
+  auth_policy_change: {service_lines: [physiotherapy, radiology], month_range: [9, 14], learn_delay_weeks: [5, 8], adoption_weeks: [8, 14]}
+  slow_payer: {month_range: [12, 18], median_days_range: [55, 70]}
+  weak_doctor: {logit_range: [1.0, 1.5]}
+
+data_quality:   # planted export problems for the validator to catch
+  remittance_dup_rows: 0.002
+  nonpositive_net: 0.001
+  ra_before_submission: 0.0005
+  gross_mismatch: 0.001

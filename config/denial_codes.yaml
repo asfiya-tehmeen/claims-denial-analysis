@@ -1,0 +1,27 @@
+# Denial codes used by the simulator and dim_denial_code.
+# source: GC06-2018 = verified in DHA eClaimLink General Circular 06/2018 (official)
+#         secondary   = text from the HL7 HCX value set / Shafafiya-derived lists (see SOURCES.md #4)
+# category: analyst grouping used in KPIs (the 8 groups in the README).
+# avoidable: analyst judgement - could a pre-submission check normally have prevented it?
+codes:
+  ELIG-005: {desc: "Services performed after the last date of coverage", category: Eligibility, avoidable: true, source: secondary}
+  ELIG-006: {desc: "Services performed prior to the effective date of coverage", category: Eligibility, avoidable: true, source: secondary}
+  AUTH-001: {desc: "Prior approval is required and was not obtained", category: Authorisation, avoidable: true, source: secondary}
+  AUTH-004: {desc: "Service(s) is (are) performed outside authorization validity date", category: Authorisation, avoidable: true, source: secondary}
+  AUTH-005: {desc: "Claim information is inconsistent with pre-certified/authorized services", category: Authorisation, avoidable: false, source: secondary}
+  CODE-001: {desc: "Missing, incomplete or invalid principal diagnosis", category: Coding, avoidable: true, source: GC06-2018}
+  CODE-006: {desc: "Diagnosis is inconsistent with the procedure", category: Medical necessity, avoidable: true, source: GC06-2018}
+  CODE-016: {desc: "Activity/diagnosis inconsistent with Service", category: Coding, avoidable: false, source: GC06-2018}
+  PRCE-002: {desc: "Payment is included in the allowance for another service", category: Coding, avoidable: true, source: secondary}
+  MNEC-005: {desc: "Service/supply may be appropriate, but too frequent", category: Coding, avoidable: true, source: secondary}
+  MNEC-003: {desc: "Service is not clinically indicated based on good clinical practice", category: Medical necessity, avoidable: false, source: secondary}
+  MNEC-004: {desc: "Service is not clinically indicated based on good clinical practice, without additional supporting diagnoses/activities", category: Medical necessity, avoidable: true, source: secondary}
+  MNEC-007: {desc: "Service is not clinically indicated based on good clinical practice, without additional supporting documentation", category: Medical necessity, avoidable: true, source: GC06-2018}
+  NCOV-003: {desc: "Service(s) is (are) not covered", category: Non-covered, avoidable: true, source: secondary}
+  NCOV-019: {desc: "Preventative care is not covered", category: Non-covered, avoidable: true, source: GC06-2018}
+  NCOV-027: {desc: "Non coverage of certain medication as per policy", category: Non-covered, avoidable: true, source: GC06-2018}
+  BENX-002: {desc: "Benefit maximum for this time period or occurrence has been reached", category: Non-covered, avoidable: true, source: secondary}
+  DUPL-001: {desc: "Claim is a duplicate based on service codes and dates", category: Duplicate, avoidable: true, source: secondary}
+  TIME-001: {desc: "Time limit for submission has expired", category: Timely filing, avoidable: true, source: secondary}
+  PRCE-001: {desc: "Calculation discrepancy", category: Price, avoidable: true, source: secondary}
+  CLAI-012: {desc: "Submission not compliant with contractual agreement between provider & payer", category: Other, avoidable: false, source: secondary}

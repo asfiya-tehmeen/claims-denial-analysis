@@ -1,0 +1,25 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
+
+ref table dim_date
+ref table dim_payer
+ref table dim_service_line
+ref table dim_provider
+ref table dim_denial_code
+ref table fact_claim_line
+ref table fact_remittance
+ref table fact_change_alert
+ref table _Measures
+
+ref cultureInfo en-US
+

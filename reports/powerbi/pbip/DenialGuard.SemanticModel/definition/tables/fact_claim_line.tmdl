@@ -1,0 +1,252 @@
+table fact_claim_line
+	lineageTag: 17a264fa-1f69-44e3-afec-1d3e1eadd66f
+
+	column activity_id
+		dataType: string
+		lineageTag: 188a4014-478e-4e82-a60d-ad31ccc5c494
+		summarizeBy: none
+		sourceColumn: activity_id
+
+	column claim_id
+		dataType: string
+		lineageTag: 41cdc145-8f97-490c-a010-546c04af4ef4
+		summarizeBy: none
+		sourceColumn: claim_id
+
+	column line_no
+		dataType: int64
+		lineageTag: 3d1d0133-73d4-475c-8374-4f7ad9551f99
+		summarizeBy: none
+		sourceColumn: line_no
+
+	column is_claim_anchor
+		dataType: int64
+		isHidden
+		lineageTag: 4630bc5f-1280-45d3-8311-9ab1e03aab1d
+		summarizeBy: none
+		sourceColumn: is_claim_anchor
+
+	column payer_key
+		dataType: int64
+		isHidden
+		lineageTag: e87a0f9a-92c4-44cb-aa56-49f65a63146d
+		summarizeBy: none
+		sourceColumn: payer_key
+
+	column service_line_key
+		dataType: int64
+		isHidden
+		lineageTag: 37d8edb3-3e22-49c2-b32a-59fa15e170e8
+		summarizeBy: none
+		sourceColumn: service_line_key
+
+	column provider_key
+		dataType: int64
+		isHidden
+		lineageTag: 67b7ac36-7b5b-42fe-8618-df62f9cd0376
+		summarizeBy: none
+		sourceColumn: provider_key
+
+	column service_date_key
+		dataType: int64
+		isHidden
+		lineageTag: 2a4ba563-bf1b-4405-b3a1-19c06afd2a92
+		summarizeBy: none
+		sourceColumn: service_date_key
+
+	column submission_date_key
+		dataType: int64
+		isHidden
+		lineageTag: ef06e8e5-ce61-46bf-aa56-46bfc9d86351
+		summarizeBy: none
+		sourceColumn: submission_date_key
+
+	column initial_ra_date_key
+		dataType: int64
+		isHidden
+		lineageTag: 53d702d6-c72f-4b81-b1be-afcfbc91b1fb
+		summarizeBy: none
+		sourceColumn: initial_ra_date_key
+
+	column initial_denial_code_key
+		dataType: int64
+		isHidden
+		lineageTag: c4b83ec9-75bb-4cdb-bae8-909e16d139ba
+		summarizeBy: none
+		sourceColumn: initial_denial_code_key
+
+	column plan_tier
+		dataType: string
+		lineageTag: 4d226d4d-4eb2-4416-9613-4b1835c145fe
+		summarizeBy: none
+		sourceColumn: plan_tier
+
+	column code
+		dataType: string
+		lineageTag: d47a0c82-f6e0-44bd-98f5-d37f132db9a5
+		summarizeBy: none
+		sourceColumn: code
+
+	column code_type
+		dataType: string
+		lineageTag: a1191efc-04c1-43f3-b326-424f84efacf2
+		summarizeBy: none
+		sourceColumn: code_type
+
+	column quantity
+		dataType: int64
+		lineageTag: 2a70ca30-8530-4972-8af7-6c0eab57eba3
+		summarizeBy: none
+		sourceColumn: quantity
+
+	column modifier
+		dataType: string
+		lineageTag: d82424ad-38dc-4027-b872-189ca811d39d
+		summarizeBy: none
+		sourceColumn: modifier
+
+	column has_prior_auth
+		dataType: int64
+		lineageTag: 5100d48c-693d-4901-a7ef-22520afd1248
+		summarizeBy: none
+		sourceColumn: has_prior_auth
+
+	column gross
+		dataType: double
+		lineageTag: e0cde038-28d8-4d21-bd91-1b60ab79b6d8
+		summarizeBy: none
+		sourceColumn: gross
+
+	column patient_share
+		dataType: double
+		lineageTag: c9063a54-fa8f-4caa-aa71-cd59be62f400
+		summarizeBy: none
+		sourceColumn: patient_share
+
+	column net
+		dataType: double
+		lineageTag: 6af133f3-97e2-4ab9-91d4-4f8b24cd5e8b
+		summarizeBy: none
+		sourceColumn: net
+
+	column initial_paid
+		dataType: double
+		lineageTag: 371b113a-2573-4170-9e23-9578a2898a72
+		summarizeBy: none
+		sourceColumn: initial_paid
+
+	column initial_denied_amount
+		dataType: double
+		lineageTag: ac734694-1979-4afd-a545-a975522bd3a4
+		summarizeBy: none
+		sourceColumn: initial_denied_amount
+
+	column is_initial_denied
+		dataType: int64
+		lineageTag: 363319af-9b74-4c15-a020-f461493e4762
+		summarizeBy: none
+		sourceColumn: is_initial_denied
+
+	column is_avoidable_denial
+		dataType: int64
+		lineageTag: 652994f9-863f-4e7d-9da6-82285e146c8e
+		summarizeBy: none
+		sourceColumn: is_avoidable_denial
+
+	column was_resubmitted
+		dataType: int64
+		lineageTag: f9414f61-88ef-4684-add3-65a03218dc24
+		summarizeBy: none
+		sourceColumn: was_resubmitted
+
+	column recovered_on_resubmission
+		dataType: double
+		lineageTag: cca457b8-17d1-4440-ab5c-3ac7387e55ea
+		summarizeBy: none
+		sourceColumn: recovered_on_resubmission
+
+	column was_overturned
+		dataType: int64
+		lineageTag: 4f24a181-163d-45b1-9284-5b22eea4d8a0
+		summarizeBy: none
+		sourceColumn: was_overturned
+
+	column final_denied_amount
+		dataType: double
+		lineageTag: af43fae7-2fb3-47fa-8e6b-405cd3409664
+		summarizeBy: none
+		sourceColumn: final_denied_amount
+
+	column is_final_denied
+		dataType: int64
+		lineageTag: fee45f72-9d05-4c24-be21-980f6afa11ab
+		summarizeBy: none
+		sourceColumn: is_final_denied
+
+	column days_to_initial_ra
+		dataType: int64
+		lineageTag: 3254c231-e9f5-4c8b-91c5-8e2283768ca2
+		summarizeBy: none
+		sourceColumn: days_to_initial_ra
+
+	column days_service_to_submission
+		dataType: int64
+		lineageTag: 2d60bb2c-29bd-4741-8e60-a1baa018df6f
+		summarizeBy: none
+		sourceColumn: days_service_to_submission
+
+	column late_submission_days
+		dataType: int64
+		lineageTag: eddc1da8-bd79-42e9-98b2-e6b695d2dadd
+		summarizeBy: none
+		sourceColumn: late_submission_days
+
+	column scrubber_flag_count
+		dataType: int64
+		lineageTag: 4e5220f0-3133-403a-b4a5-67262b1d6eff
+		summarizeBy: none
+		sourceColumn: scrubber_flag_count
+
+	column claim_scrubber_clean
+		dataType: int64
+		lineageTag: 65347215-8500-48ca-b28a-fb42b1b774b8
+		summarizeBy: none
+		sourceColumn: claim_scrubber_clean
+
+	column claim_first_pass_paid
+		dataType: int64
+		lineageTag: 9d3b4e3d-c112-43d6-b366-9b279a5347db
+		summarizeBy: none
+		sourceColumn: claim_first_pass_paid
+
+	column ar_eligible
+		dataType: int64
+		isHidden
+		lineageTag: 7860486e-3afa-409f-9294-c15dab624728
+		summarizeBy: none
+		sourceColumn: ar_eligible
+
+	column submission_date
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 73ce8e39-ead3-431f-87a2-8fdeae83620b
+		summarizeBy: none
+		sourceColumn: submission_date
+
+	column last_settlement_date
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 9282cc06-bb3f-4822-9208-5d0074fa3396
+		summarizeBy: none
+		sourceColumn: last_settlement_date
+
+	partition fact_claim_line = m
+		mode: import
+		source =
+				let
+				Source = Csv.Document(File.Contents("C:\Users\exube\OneDrive\Desktop\resume-builder-main\projects\e-claims-denial-analysis\reports\powerbi\fact_claim_line.csv"), [Delimiter=",", Columns=38, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"line_no", "is_claim_anchor", "payer_key", "service_line_key", "provider_key", "service_date_key", "submission_date_key", "initial_ra_date_key", "initial_denial_code_key", "quantity", "has_prior_auth", "gross", "patient_share", "net", "initial_paid", "initial_denied_amount", "is_initial_denied", "is_avoidable_denial", "was_resubmitted", "recovered_on_resubmission", "was_overturned", "final_denied_amount", "is_final_denied", "days_to_initial_ra", "days_service_to_submission", "late_submission_days", "scrubber_flag_count", "claim_scrubber_clean", "claim_first_pass_paid", "ar_eligible", "submission_date", "last_settlement_date"}),
+				Typed = Table.TransformColumnTypes(Blanks, {{"activity_id", type text}, {"claim_id", type text}, {"line_no", Int64.Type}, {"is_claim_anchor", Int64.Type}, {"payer_key", Int64.Type}, {"service_line_key", Int64.Type}, {"provider_key", Int64.Type}, {"service_date_key", Int64.Type}, {"submission_date_key", Int64.Type}, {"initial_ra_date_key", Int64.Type}, {"initial_denial_code_key", Int64.Type}, {"plan_tier", type text}, {"code", type text}, {"code_type", type text}, {"quantity", Int64.Type}, {"modifier", type text}, {"has_prior_auth", Int64.Type}, {"gross", type number}, {"patient_share", type number}, {"net", type number}, {"initial_paid", type number}, {"initial_denied_amount", type number}, {"is_initial_denied", Int64.Type}, {"is_avoidable_denial", Int64.Type}, {"was_resubmitted", Int64.Type}, {"recovered_on_resubmission", type number}, {"was_overturned", Int64.Type}, {"final_denied_amount", type number}, {"is_final_denied", Int64.Type}, {"days_to_initial_ra", Int64.Type}, {"days_service_to_submission", Int64.Type}, {"late_submission_days", Int64.Type}, {"scrubber_flag_count", Int64.Type}, {"claim_scrubber_clean", Int64.Type}, {"claim_first_pass_paid", Int64.Type}, {"ar_eligible", Int64.Type}, {"submission_date", type date}, {"last_settlement_date", type date}}, "en-US")
+				in Typed
+

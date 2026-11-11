@@ -1,0 +1,93 @@
+table dim_date
+	lineageTag: 93b37e01-212f-497a-ab83-6bc4f1629b0f
+	dataCategory: Time
+
+	column date_key
+		dataType: int64
+		isHidden
+		lineageTag: 48bcdc71-5e8d-4404-b2c8-99caa9a8a528
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column date
+		dataType: dateTime
+		isUnique
+		formatString: yyyy-MM-dd
+		lineageTag: 1bba5257-890a-44b8-9bf4-32f0b77b0e9c
+		summarizeBy: none
+		sourceColumn: date
+
+	column year
+		dataType: int64
+		lineageTag: ffb826c2-3344-4370-b373-8b4757381268
+		summarizeBy: none
+		sourceColumn: year
+
+	column quarter
+		dataType: int64
+		lineageTag: fe5cb417-999d-4f74-a6cf-7e7ea4f81dc1
+		summarizeBy: none
+		sourceColumn: quarter
+
+	column month
+		dataType: int64
+		lineageTag: 995ea859-c7aa-441f-9c07-a675c61ab9d4
+		summarizeBy: none
+		sourceColumn: month
+
+	column month_name
+		dataType: string
+		lineageTag: dda982b9-4058-4153-b551-a471082cb525
+		summarizeBy: none
+		sourceColumn: month_name
+		sortByColumn: month
+
+	column year_month
+		dataType: string
+		lineageTag: a33f7809-01b3-4f0d-8f6d-c139c72155f9
+		summarizeBy: none
+		sourceColumn: year_month
+		sortByColumn: month_start
+
+	column month_start
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 3854f971-d980-4cd7-a65d-a7d716c9e489
+		summarizeBy: none
+		sourceColumn: month_start
+
+	column week_start
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 84f412d2-955c-46cc-8562-cd7ef691e229
+		summarizeBy: none
+		sourceColumn: week_start
+
+	column iso_weekday
+		dataType: int64
+		lineageTag: 7292804f-e063-4ad2-89f6-4a4ebc0a6fff
+		summarizeBy: none
+		sourceColumn: iso_weekday
+
+	column is_month_end
+		dataType: int64
+		lineageTag: 786a7b31-a3c2-4281-85e6-ea184d34af3e
+		summarizeBy: none
+		sourceColumn: is_month_end
+
+	column sim_month
+		dataType: int64
+		lineageTag: 432e6890-0c1b-4bdb-b08c-56b775f64802
+		summarizeBy: none
+		sourceColumn: sim_month
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				Source = Csv.Document(File.Contents("C:\Users\exube\OneDrive\Desktop\resume-builder-main\projects\e-claims-denial-analysis\reports\powerbi\dim_date.csv"), [Delimiter=",", Columns=12, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"date_key", "date", "year", "quarter", "month", "month_start", "week_start", "iso_weekday", "is_month_end", "sim_month"}),
+				Typed = Table.TransformColumnTypes(Blanks, {{"date_key", Int64.Type}, {"date", type date}, {"year", Int64.Type}, {"quarter", Int64.Type}, {"month", Int64.Type}, {"month_name", type text}, {"year_month", type text}, {"month_start", type date}, {"week_start", type date}, {"iso_weekday", Int64.Type}, {"is_month_end", Int64.Type}, {"sim_month", Int64.Type}}, "en-US")
+				in Typed
+

@@ -1,0 +1,44 @@
+table dim_provider
+	lineageTag: 5abf3033-6816-43bc-8fcc-51531fecf7eb
+
+	column provider_key
+		dataType: int64
+		isHidden
+		lineageTag: fb72ae81-5641-490c-af75-03812e96f343
+		summarizeBy: none
+		sourceColumn: provider_key
+
+	column clinician_id
+		dataType: string
+		lineageTag: 95019f2c-9117-4906-ae94-7bb42d351926
+		summarizeBy: none
+		sourceColumn: clinician_id
+
+	column specialty
+		dataType: string
+		lineageTag: 69881d76-e865-4b0c-aa0b-7bf5247979b9
+		summarizeBy: none
+		sourceColumn: specialty
+
+	column facility_id
+		dataType: string
+		lineageTag: 72ab4728-7a19-4478-8ed0-799c9a8849b3
+		summarizeBy: none
+		sourceColumn: facility_id
+
+	column facility_name
+		dataType: string
+		lineageTag: fad86bd1-cd7c-44e3-9af3-8f7d9049f286
+		summarizeBy: none
+		sourceColumn: facility_name
+
+	partition dim_provider = m
+		mode: import
+		source =
+				let
+				Source = Csv.Document(File.Contents("C:\Users\exube\OneDrive\Desktop\resume-builder-main\projects\e-claims-denial-analysis\reports\powerbi\dim_provider.csv"), [Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"provider_key"}),
+				Typed = Table.TransformColumnTypes(Blanks, {{"provider_key", Int64.Type}, {"clinician_id", type text}, {"specialty", type text}, {"facility_id", type text}, {"facility_name", type text}}, "en-US")
+				in Typed
+

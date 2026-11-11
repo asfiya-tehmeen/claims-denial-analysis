@@ -1,0 +1,47 @@
+table fact_change_alert
+	lineageTag: 4b50526b-0e9d-4e1e-8992-61c022de3bb8
+
+	column payer_key
+		dataType: int64
+		isHidden
+		lineageTag: d9e92c79-2a53-4cc8-8b59-6d55faaccd19
+		summarizeBy: none
+		sourceColumn: payer_key
+
+	column service_line_key
+		dataType: int64
+		isHidden
+		lineageTag: 25449d78-2931-4a3a-b473-37b748b71eca
+		summarizeBy: none
+		sourceColumn: service_line_key
+
+	column category
+		dataType: string
+		lineageTag: 1edc47a9-0d1c-4ff5-aa4f-d4793023a5a1
+		summarizeBy: none
+		sourceColumn: category
+
+	column alert_week
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 2d3e3ec0-5c16-4db6-92aa-ad19c6642af3
+		summarizeBy: none
+		sourceColumn: alert_week
+
+	column baseline_rate
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 6e0e8baf-f50f-4922-ab5f-82c314ca2197
+		summarizeBy: none
+		sourceColumn: baseline_rate
+
+	partition fact_change_alert = m
+		mode: import
+		source =
+				let
+				Source = Csv.Document(File.Contents("C:\Users\exube\OneDrive\Desktop\resume-builder-main\projects\e-claims-denial-analysis\reports\powerbi\fact_change_alert.csv"), [Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"payer_key", "service_line_key", "alert_week", "baseline_rate"}),
+				Typed = Table.TransformColumnTypes(Blanks, {{"payer_key", Int64.Type}, {"service_line_key", Int64.Type}, {"category", type text}, {"alert_week", type date}, {"baseline_rate", type number}}, "en-US")
+				in Typed
+

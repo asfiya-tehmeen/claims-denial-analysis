@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+# Generated or licensed data: rebuilt by `python -m src.run_all`
+data/raw/*
+!data/raw/.gitkeep
+data/clean/*
+!data/clean/.gitkeep
+data/gold/*
+data/reference/downloads/
+data/reference/*.csv
+# CMS NCCI/MUE files contain AMA-copyrighted CPT codes: never commit them
+reports/powerbi/*.csv
+!reports/powerbi/expected_values.csv
+!reports/powerbi/measure_check.csv
+# Power BI Project: local cache and user settings (Microsoft's recommended ignores)
+reports/powerbi/pbip/**/.pbi/cache.abf
+reports/powerbi/pbip/**/.pbi/localSettings.json

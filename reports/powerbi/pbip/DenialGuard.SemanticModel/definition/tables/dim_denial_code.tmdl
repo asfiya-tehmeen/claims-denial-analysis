@@ -1,0 +1,56 @@
+table dim_denial_code
+	lineageTag: 65ac9a11-7b5d-41b6-80df-511a346fd161
+
+	column denial_code_key
+		dataType: int64
+		isHidden
+		lineageTag: b073c76c-47f4-4159-a29d-7a99bdfb036e
+		summarizeBy: none
+		sourceColumn: denial_code_key
+
+	column denial_code
+		dataType: string
+		lineageTag: f2e6c9f8-b4d9-4baf-adc8-5127d016abc6
+		summarizeBy: none
+		sourceColumn: denial_code
+
+	column eclaimlink_group
+		dataType: string
+		lineageTag: eab9f1e3-1ed0-4676-99fc-2c3d7efbaa92
+		summarizeBy: none
+		sourceColumn: eclaimlink_group
+
+	column description
+		dataType: string
+		lineageTag: 9ad2ff6e-40be-4d28-93dd-4b81c01edf71
+		summarizeBy: none
+		sourceColumn: description
+
+	column category
+		dataType: string
+		lineageTag: f711d46f-a34a-4593-97a3-d35223ad64e9
+		summarizeBy: none
+		sourceColumn: category
+
+	column avoidable
+		dataType: int64
+		lineageTag: 92983f55-df5e-4aa5-ab97-647e08d7d907
+		summarizeBy: none
+		sourceColumn: avoidable
+
+	column source
+		dataType: string
+		lineageTag: 5bd60492-f9df-468f-b81c-0976c44ae8d9
+		summarizeBy: none
+		sourceColumn: source
+
+	partition dim_denial_code = m
+		mode: import
+		source =
+				let
+				Source = Csv.Document(File.Contents("C:\Users\exube\OneDrive\Desktop\resume-builder-main\projects\e-claims-denial-analysis\reports\powerbi\dim_denial_code.csv"), [Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"denial_code_key", "avoidable"}),
+				Typed = Table.TransformColumnTypes(Blanks, {{"denial_code_key", Int64.Type}, {"denial_code", type text}, {"eclaimlink_group", type text}, {"description", type text}, {"category", type text}, {"avoidable", Int64.Type}, {"source", type text}}, "en-US")
+				in Typed
+

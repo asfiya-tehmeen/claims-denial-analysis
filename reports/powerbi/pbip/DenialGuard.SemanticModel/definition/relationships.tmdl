@@ -1,0 +1,58 @@
+relationship fact_claim_line_payer_key_dim_payer_payer_key
+	fromColumn: fact_claim_line.payer_key
+	toColumn: dim_payer.payer_key
+
+relationship fact_claim_line_service_line_key_dim_service_line_service_line_key
+	fromColumn: fact_claim_line.service_line_key
+	toColumn: dim_service_line.service_line_key
+
+relationship fact_claim_line_provider_key_dim_provider_provider_key
+	fromColumn: fact_claim_line.provider_key
+	toColumn: dim_provider.provider_key
+
+relationship fact_claim_line_initial_denial_code_key_dim_denial_code_denial_code_key
+	fromColumn: fact_claim_line.initial_denial_code_key
+	toColumn: dim_denial_code.denial_code_key
+
+relationship fact_claim_line_service_date_key_dim_date_date_key
+	fromColumn: fact_claim_line.service_date_key
+	toColumn: dim_date.date_key
+
+relationship fact_claim_line_submission_date_key_dim_date_date_key
+	isActive: false
+	fromColumn: fact_claim_line.submission_date_key
+	toColumn: dim_date.date_key
+
+relationship fact_claim_line_initial_ra_date_key_dim_date_date_key
+	isActive: false
+	fromColumn: fact_claim_line.initial_ra_date_key
+	toColumn: dim_date.date_key
+
+relationship fact_remittance_payer_key_dim_payer_payer_key
+	fromColumn: fact_remittance.payer_key
+	toColumn: dim_payer.payer_key
+
+relationship fact_remittance_service_line_key_dim_service_line_service_line_key
+	fromColumn: fact_remittance.service_line_key
+	toColumn: dim_service_line.service_line_key
+
+relationship fact_remittance_provider_key_dim_provider_provider_key
+	fromColumn: fact_remittance.provider_key
+	toColumn: dim_provider.provider_key
+
+relationship fact_remittance_denial_code_key_dim_denial_code_denial_code_key
+	fromColumn: fact_remittance.denial_code_key
+	toColumn: dim_denial_code.denial_code_key
+
+relationship fact_remittance_settlement_date_key_dim_date_date_key
+	fromColumn: fact_remittance.settlement_date_key
+	toColumn: dim_date.date_key
+
+relationship fact_change_alert_payer_key_dim_payer_payer_key
+	fromColumn: fact_change_alert.payer_key
+	toColumn: dim_payer.payer_key
+
+relationship fact_change_alert_service_line_key_dim_service_line_service_line_key
+	fromColumn: fact_change_alert.service_line_key
+	toColumn: dim_service_line.service_line_key
+
