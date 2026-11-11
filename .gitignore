@@ -17,3 +17,8 @@ reports/powerbi/*.csv
 # Power BI Project: local cache and user settings (Microsoft's recommended ignores)
 reports/powerbi/pbip/**/.pbi/cache.abf
 reports/powerbi/pbip/**/.pbi/localSettings.json
+
+# Personal notes, old plan versions and AI prompts (local only)
+my_README*.md
+NEXT_PROMPT.md
+*_PROMPT.md

@@ -51,4 +51,4 @@ Apply the measure formats from MEASURES.md first, so every visual inherits them.
 
 **Interactions (Format → Edit interactions):** select slicer 4 (payer), then set visual 3 (scorecard table) to **None**, so the scorecard always shows all payers. Do the same for slicer 5. Slicers 4 and 5 should still filter visuals 6, 7 and 8.
 
-**What to show in an interview:** on page 2, select the payer and service line where the alert table shows a run of alerts. Point to where the weekly authorisation-denial line steps up and where the first CUSUM alert sits. Then go to page 1 to show what that change cost in denied AED.
+**Suggested walkthrough:** on page 2, select the payer and service line where the alert table shows a run of alerts. Point to where the weekly authorisation-denial line steps up and where the first CUSUM alert sits. Then go to page 1 to show what that change cost in denied AED.
